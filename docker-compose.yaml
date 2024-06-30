@@ -18,7 +18,7 @@ services:
     image: nginxproxy/acme-companion
     container_name: nginx-proxy-letsencrypt
     environment:
-      - DEFAULT_EMAIL= nbgrhenjq@gmail.com
+      - DEFAULT_EMAIL=nbgrhenjq@gmail.com
     volumes_from:
       - nginx-proxy
     volumes:
@@ -29,8 +29,8 @@ services:
   app1:
       image: crccheck/hello-world
       environment:
-      - VIRTUAL_HOST=cheloukpavek.ru
-      - LETSENCRYPT_HOST=cheloukpavek.ru 
+        VIRTUAL_HOST: cheloukpavek.ru
+        LETSENCRYPT_HOST: cheloukpavek.ru 
       ports:
       - 81:8000
 
