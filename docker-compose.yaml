@@ -27,8 +27,8 @@ services:
   app1:
       build: .
       environment:
-      - PORT=5432
-      - RESPONSE= "PRIVET"
+      - PORT="5432"
+      - RESPONSE="PRIVET"
       - VIRTUAL_HOST: cheloukpavek.ru
       - LETSENCRYPT_HOST: cheloukpavek.ru 
       ports:
@@ -38,8 +38,8 @@ services:
   app2:
       build: .
       environment:
-      - PORT=5432
-      - RESPONSE= "PRIVET"
+      - PORT="5432"
+      - RESPONSE="PRIVET"
       - VIRTUAL_HOST: cheloukpavek.ru
       - LETSENCRYPT_HOST: cheloukpavek.ru 
       ports:
