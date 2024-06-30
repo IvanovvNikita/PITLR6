@@ -1,0 +1,54 @@
+services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - vhost:/etc/nginx/vhost.d
+      - conf:/etc/nginx/conf.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  letsencrypt-companion:
+    image: nginxproxy/docker-letsencrypt-nginx-proxy-companion
+    container_name: nginx-proxy-letsencrypt
+    environment:
+      - DEFAULT_EMAIL= nbgrhenjq@gmail.com
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - certs:/etc/nginx/certs:rw
+      - acme:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+    app1:
+        build: .
+        environment:
+        - PORT=5432
+        - RESPONSE= "PRIVET"
+        - VIRTUAL_HOST: cheloukpavek.ru
+        - LETSENCRYPT_HOST: cheloukpavek.ru 
+        ports:
+        - 81:5432
+        command: "python main.py"
+
+    app2:
+        build: .
+        environment:
+        - PORT=5432
+        - RESPONSE= "PRIVET"
+        - VIRTUAL_HOST: cheloukpavek.ru
+        - LETSENCRYPT_HOST: cheloukpavek.ru 
+        ports:
+        - 82:5432
+        command: "python main.py"
+
+volumes:
+  vhost:
+  conf:
+  html:
+  certs:
+  acme:
