@@ -15,7 +15,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
   letsencrypt-companion:
-    image: jwilder/docker-letsencrypt-nginx-proxy-companion
+    image: nginxproxy/acme-companion
     container_name: nginx-proxy-letsencrypt
     environment:
       - DEFAULT_EMAIL= nbgrhenjq@gmail.com
