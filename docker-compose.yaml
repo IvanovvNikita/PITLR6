@@ -32,7 +32,7 @@ services:
       - VIRTUAL_HOST=cheloukpavek.ru
       - LETSENCRYPT_HOST=cheloukpavek.ru 
       ports:
-      - 80:5432
+      - 81:8000
 
 volumes:
   vhost:
