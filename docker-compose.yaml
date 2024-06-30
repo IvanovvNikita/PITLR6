@@ -27,26 +27,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
 
   app1:
-      build: .
+      image: crccheck/hello-world
       environment:
-      - PORT="5432"
-      - RESPONSE="PRIVET"
       - VIRTUAL_HOST=cheloukpavek.ru
       - LETSENCRYPT_HOST=cheloukpavek.ru 
       ports:
-      - 81:5432
-      command: "python main.py"
-
-  app2:
-      build: .
-      environment:
-      - PORT="5432"
-      - RESPONSE="PRIVET"
-      - VIRTUAL_HOST=cheloukpavek.ru
-      - LETSENCRYPT_HOST=cheloukpavek.ru 
-      ports:
-      - 82:5432
-      command: "python main.py"
+      - 80:5432
 
 volumes:
   vhost:
